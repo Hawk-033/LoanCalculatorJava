@@ -2,8 +2,7 @@ package groupproject2025;
 // LiveExample 10.1
 import java.util.Scanner;
 
-public class TestLoanClassTemplate {
-  /** Main method */
+public class TestLoanClass {
   public static void main(String[] args) {
     // Create a Scanner
     Scanner input = new Scanner(System.in);
