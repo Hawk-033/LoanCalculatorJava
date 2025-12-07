@@ -1,20 +1,20 @@
 package groupproject2025;
 // LiveExample 10.2
-public class LoanTemplate {
+public class Loan {
 	  private double annualInterestRate;
 	  private int numberOfYears;
 	  private double loanAmount;
 	  private java.util.Date loanDate;
 
 	  /** No-arg constructor */
-	  public LoanTemplate() {
+	  public Loan() {
 	    this(2.5, 1, 1000);
 	  }
 
 	  /** Construct a loan with specified annual interest rate,
 	      number of years, and loan amount
 	    */
-	  public LoanTemplate(double annualInterestRate, int numberOfYears,
+	  public Loan(double annualInterestRate, int numberOfYears,
 	      double loanAmount) {
 	    this.annualInterestRate = annualInterestRate;
 	    this.numberOfYears = numberOfYears;
@@ -69,8 +69,8 @@ public class LoanTemplate {
 	  // 11/9
 	  /** Find total interest */
 	  public double getTotalInterest() {
-	    // to do
-		// totalInterest is the difference of total payment minus loan amount
+	    // totalInterest is the difference of total payment minus loan amount
+	    double totalInterest = getTotalPayment() - loanAmount; // <--- Implemented 'to do'
 	    return totalInterest;    
 	  }
 

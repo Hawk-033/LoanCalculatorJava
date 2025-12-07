@@ -53,13 +53,34 @@ public class TestLoanClass {
 	  double principal = 0.0;
 	  double totalInterest = 0.0;
 
+	  // Month 1: Apply extra payment
+	  month++;
+	  interest = myLoanAmount * myMonthlyInterestRate;
+	  totalInterest += interest;
+	  principal = myMonthlyPayment - interest;
+	  
+	  // Principal + Extra Payment
+	  myLoanAmount -= (principal + extraPay);
+	  
+	  // Remaining months: Standard monthly payment
 	  while (myLoanAmount >= myMonthlyPayment) {
 		  // to do A1 same as A2
-		  
+		  month++;
+		  interest = myLoanAmount * myMonthlyInterestRate;
+		  totalInterest += interest;
+		  principal = myMonthlyPayment - interest;
+		  myLoanAmount -= principal;
 	  }
-	  if (myLoanAmount < myMonthlyPayment) {
+	  
+	  // Final payment (less than a full monthly payment)
+	  if (myLoanAmount > 0) { // Condition changed from < myMonthlyPayment to > 0 to handle final payment
 		  // to do B1 same as B2
+		  month++;
+		  interest = myLoanAmount * myMonthlyInterestRate;
+		  totalInterest += interest;
+		  // No principal calculation needed, as the final payment covers the remaining balance + interest
 	  }
+	  
 	  double interestSaved = l.getTotalInterest() - totalInterest;
 	  /*
 	  System.out.println("total interest " + totalInterest);
@@ -81,47 +102,50 @@ public class TestLoanClass {
 	  double principal = 0.0;
 	  double totalInterest = 0.0;
 	  
+	  // While loop: Payments with extraPay continue as long as the remaining balance
+	  // is enough to cover the full payment (monthly + extra)
 	  while (myLoanAmount >= (myMonthlyPayment + extraPay)) {
 		  // to do A2 same as A1
-		  // caculate the new month's interest based on myLoanAmount and myMonthlyInterestRate
-		  // caculate the principal paid this month from myMonthlyPayment minus the new month's interest
-		  // caculate the new myLoanAmount after minus this month's principal, then minus extra payment
+		  // calculate the new month's interest based on myLoanAmount and myMonthlyInterestRate
+		  interest = myLoanAmount * myMonthlyInterestRate;
+		  // calculate the principal paid this month from myMonthlyPayment minus the new month's interest
+		  principal = myMonthlyPayment - interest;
+		  // calculate the new myLoanAmount after minus this month's principal, then minus extra payment
+		  myLoanAmount -= (principal + extraPay);
 		  // add the interest paid this month to totalInterest
+		  totalInterest += interest;
 		  // increment the month count
-
+		  month++;
 	  }
+	  
+	  // While loop: Payments continue with ONLY the standard monthly payment
 	  while (myLoanAmount >= myMonthlyPayment) {
 		  // to do B2 same as B1
-		  // caculate the new month's interest based on myLoanAmount and myMonthlyInterestRate
-		  // caculate the principal paid this month from myMonthlyPayment minus the new month's interest
-		  // caculate the new myLoanAmount after minus this month's principal
+		  // calculate the new month's interest based on myLoanAmount and myMonthlyInterestRate
+		  interest = myLoanAmount * myMonthlyInterestRate;
+		  // calculate the principal paid this month from myMonthlyPayment minus the new month's interest
+		  principal = myMonthlyPayment - interest;
+		  // calculate the new myLoanAmount after minus this month's principal
+		  myLoanAmount -= principal;
 		  // add the interest paid this month to totalInterest
+		  totalInterest += interest;
 		  // increment the month count
+		  month++;
 	  }
-	  if (myLoanAmount < myMonthlyPayment) {
-		  // to do
-		  // caculate the new month's interest based on myLoanAmount and myMonthlyInterestRate
+	  
+	  // Final payment (less than a full monthly payment)
+	  if (myLoanAmount > 0) { // Condition changed from < myMonthlyPayment to > 0 to handle final payment
+		  // calculate the new month's interest based on myLoanAmount and myMonthlyInterestRate
+		  interest = myLoanAmount * myMonthlyInterestRate;
 		  // add the interest paid this month to totalInterest
+		  totalInterest += interest;
 		  // increment the month count
+		  month++;
+		  // The remaining loan amount is covered by a final payment of myLoanAmount + interest
 	  }
+	  
 	  double interestSaved = l.getTotalInterest() - totalInterest;
 	  System.out.printf("Total interest $%.2f%nTotal interest saved $%.2f%nTotal months %d %n",
 			  totalInterest, interestSaved, month);	  
   }
 }
-/*
-Enter annual interest rate, for example, 8.25: 5.75
-Enter number of years as an integer: 15
-Enter loan amount, for example, 120000.95: 25000
-The loan was created on Sat Oct 21 08:29:24 EDT 2023
-The monthly payment is 207.60
-The total payment is 37368.45
-*/
-/*
-Enter annual interest rate, for example, 8.25: 5
-Enter number of years as an integer: 4
-Enter loan amount, for example, 120000.95: 20000
-The loan was created on Sun Nov 09 13:57:33 EST 2025
-The monthly payment is 460.59
-The total payment is 22108.12
-*/
