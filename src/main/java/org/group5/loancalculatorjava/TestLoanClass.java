@@ -94,6 +94,7 @@ public class TestLoanClass {
 		double principal = 0.0;
 		double totalInterest = 0.0;
 		
+		
 		while (myLoanAmount >= (myMonthlyPayment + extraPay)) {
 			// to do A2 same as A1
 			// caculate the new month's interest based on myLoanAmount and myMonthlyInterestRate
@@ -101,7 +102,7 @@ public class TestLoanClass {
 			// caculate the principal paid this month from myMonthlyPayment minus the new month's interest
 			principal = myMonthlyPayment - interest;
 			// caculate the new myLoanAmount after minus this month's principal, then minus extra payment
-			myLoanAmount -= principal - extraPay;
+			myLoanAmount -= (principal + extraPay);
 			// add the interest paid this month to totalInterest
 			totalInterest += interest;
 			// increment the month count
