@@ -1,4 +1,4 @@
-package groupproject2025;
+package org.group5.loancalculatorjava;
 // LiveExample 10.2
 public class Loan {
 	  private double annualInterestRate;
